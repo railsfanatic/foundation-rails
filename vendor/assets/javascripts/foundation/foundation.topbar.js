@@ -132,7 +132,8 @@
       var self = this;
       $(this.scope)
         .off('.topbar')
-        .on('click.fndtn.topbar', '[data-topbar] .toggle-topbar a', function (e) {
+        .on('click.fndtn.topbar', '[data-topbar] .toggle-topbar', function (e) {
+          alert('test');
           e.preventDefault();
           self.toggle(this);
         })
