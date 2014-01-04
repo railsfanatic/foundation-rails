@@ -30,6 +30,16 @@
     $('head').append('<meta class="foundation-mq-xxlarge">');
   }
 
+  // Enable FastClick if present
+
+  $(function() {
+    if(typeof FastClick !== 'undefined') {
+      // Don't attach to body if undefined
+      if (typeof document.body !== 'undefined') {
+        FastClick.attach(document.body);
+      }
+    }
+  });
 
   // private Fast Selector wrapper,
   // returns jQuery object. Only use where
@@ -166,7 +176,7 @@
   window.Foundation = {
     name : 'Foundation',
 
-    version : '5.0.0',
+    version : '5.0.3',
 
     media_queries : {
       small : S('.foundation-mq-small').css('font-family').replace(/^[\/\\'"]+|(;\s?})+|[\/\\'"]+$/g, ''),
@@ -371,7 +381,7 @@
             should_bind_events = !S(this).data(this.name + '-init');
 
         if (typeof method === 'string') {
-          return this[method].call(this);
+          return this[method].call(this, options);
         }
 
         if (S(this.scope).is('[data-' + this.name +']')) {
